@@ -1,32 +1,38 @@
 package com.networkprogramming.day1;
 
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStreamReader;
-import java.net.InetAddress;
+import java.io.InputStream;
 import java.net.URL;
 import java.net.URLConnection;
+import java.nio.ByteBuffer;
+import java.nio.channels.Channels;
+import java.nio.channels.ReadableByteChannel;
 
 public class Main {
 	public static void main(String[] args) throws IOException {
 
-		InetAddress ocsaly = InetAddress.getByName("www.ocsaly.com");
-
-		
 		try {
 			
 			URL url = new URL("https://ocsaly.com");
-			URLConnection myUrlConnection = url.openConnection();
-			BufferedReader br = new BufferedReader(new InputStreamReader(myUrlConnection.getInputStream()));
-			String myLine;
+			URLConnection urlConnection = url.openConnection();
 			
-			while ((myLine = br.readLine()) != null) {
-				System.out.println(myLine);
+			
+			InputStream inputStream = urlConnection.getInputStream();
+			ReadableByteChannel readableByteChannel = Channels.newChannel(inputStream);
+			
+			ByteBuffer buffer = ByteBuffer.allocate(64);
+			
+			String line = null;
+			
+			while (readableByteChannel.read(buffer) > 0) {
+				System.out.println(new String(buffer.array()));
+				buffer.clear();
 			}
 			
-			br.close();
-		} catch (Exception e) {
-			System.out.println(e.getMessage());;
+			readableByteChannel.close();
+			
+		} catch(Exception e) {
+			System.out.println(e.getMessage());
 		}
 
 	}
