@@ -13,7 +13,7 @@ public class Main {
 
 		try {
 			
-			URL url = new URL("https://ocsaly.com");
+			URL url = new URL("https://www.udemy.com/");
 			URLConnection urlConnection = url.openConnection();
 			
 			
