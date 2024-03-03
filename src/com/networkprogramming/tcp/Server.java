@@ -1,4 +1,4 @@
-package com.networkprogramming.day3;
+package com.networkprogramming.tcp;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -6,7 +6,7 @@ import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.Scanner;
 
-public class Main {
+public class Server {
 
 	private static ServerSocket serverSocket;
 	private static final int PORT = 1234;
