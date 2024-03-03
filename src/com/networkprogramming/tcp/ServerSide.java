@@ -6,7 +6,7 @@ import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.Scanner;
 
-public class Server {
+public class ServerSide {
 
 	private static ServerSocket serverSocket;
 	private static final int PORT = 1234;
@@ -36,7 +36,7 @@ public class Server {
 			String message = input.nextLine(); // STEP 4
 			
 			while (!message.equals("***CLOSES***")) {
-				System.out.println("MESSAGE RECEIVED.");
+				System.out.println("MESSAGE RECEIVED: " + message);
 				numMessages++;
 				output.println("MESSAGE NUM " + numMessages + " : " + message); // STEP4
 				message = input.nextLine();
